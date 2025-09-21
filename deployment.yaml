@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jl-flask-app
+  namespace: pyflask-app
+  labels:
+    app: jl-flask-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jl-flask-app
+  template:
+    metadata:
+      labels:
+        app: jl-flask-app
+    spec:
+      containers:
+      - name: jl-flask-app
+        image: 975050024946.dkr.ecr.ap-south-1.amazonaws.com/jl-python-flask-repository:jlpyflask
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
